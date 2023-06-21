@@ -11,6 +11,9 @@
 		5207D6792A435BBC000D1949 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207D6782A435BBC000D1949 /* ContentView.swift */; };
 		5207D67B2A435BBF000D1949 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5207D67A2A435BBF000D1949 /* Assets.xcassets */; };
 		5207D67E2A435BBF000D1949 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5207D67D2A435BBF000D1949 /* Preview Assets.xcassets */; };
+		5207D6862A435DAE000D1949 /* DateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207D6852A435DAE000D1949 /* DateHolder.swift */; };
+		5207D6882A435E6D000D1949 /* DateScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207D6872A435E6D000D1949 /* DateScrollerView.swift */; };
+		5207D68A2A435E8A000D1949 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207D6892A435E8A000D1949 /* CalendarHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		5207D67A2A435BBF000D1949 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5207D67D2A435BBF000D1949 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5207D67F2A435BBF000D1949 /* Demo_WeeklyCalendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo_WeeklyCalendar.entitlements; sourceTree = "<group>"; };
+		5207D6852A435DAE000D1949 /* DateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHolder.swift; sourceTree = "<group>"; };
+		5207D6872A435E6D000D1949 /* DateScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollerView.swift; sourceTree = "<group>"; };
+		5207D6892A435E8A000D1949 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,9 @@
 			children = (
 				5207D6762A435BBC000D1949 /* Demo_WeeklyCalendarApp.swift */,
 				5207D6782A435BBC000D1949 /* ContentView.swift */,
+				5207D6872A435E6D000D1949 /* DateScrollerView.swift */,
+				5207D6852A435DAE000D1949 /* DateHolder.swift */,
+				5207D6892A435E8A000D1949 /* CalendarHelper.swift */,
 				5207D67A2A435BBF000D1949 /* Assets.xcassets */,
 				5207D67F2A435BBF000D1949 /* Demo_WeeklyCalendar.entitlements */,
 				5207D67C2A435BBF000D1949 /* Preview Content */,
@@ -139,7 +148,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5207D68A2A435E8A000D1949 /* CalendarHelper.swift in Sources */,
+				5207D6882A435E6D000D1949 /* DateScrollerView.swift in Sources */,
 				5207D6792A435BBC000D1949 /* ContentView.swift in Sources */,
+				5207D6862A435DAE000D1949 /* DateHolder.swift in Sources */,
 				5207D6772A435BBC000D1949 /* Demo_WeeklyCalendarApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

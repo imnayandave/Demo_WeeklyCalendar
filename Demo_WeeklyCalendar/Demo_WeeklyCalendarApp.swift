@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct Demo_WeeklyCalendarApp: App {
+    
     var body: some Scene {
         WindowGroup {
+            let dateHolder = DateHolder()
             ContentView()
+                .environmentObject(dateHolder)
         }
     }
 }
