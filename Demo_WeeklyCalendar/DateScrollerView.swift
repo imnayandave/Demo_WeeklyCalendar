@@ -19,7 +19,7 @@ struct DateScrollerView: View {
             }
             .padding()
             .buttonStyle(PlainButtonStyle())
-            Text(CalendarHelper.shared.monthYearString(dateHolder.date))
+            Text(CalendarHelper.shared.weekAndMonthOfYear(dateHolder.date))
                 .font(.title)
                 .bold()
                 .animation(.none)

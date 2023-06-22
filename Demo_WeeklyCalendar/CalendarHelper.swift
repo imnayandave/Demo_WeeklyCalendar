@@ -14,9 +14,28 @@ class CalendarHelper {
     private let calendar = Calendar.current
     private let dateFormatter = DateFormatter()
     
-    func monthYearString(_ date: Date) -> String {
-        dateFormatter.dateFormat = "LLL yyyy"
-        return dateFormatter.string(from: date)
+    func weekAndMonthOfYear(_ date: Date) -> String {
+        dateFormatter.dateFormat = "MMMM yyyy"
+        let week = calendar.component(.weekOfMonth, from: endOfWeek(date))-1
+        let finalString = formattingWeekString(week) + dateFormatter.string(from: endOfWeek(date))
+        return finalString
+    }
+    
+    private func formattingWeekString(_ weekNumber: Int) -> String {
+        var weekNum = String()
+        if weekNumber == 1 {
+            weekNum = "1st "
+        } else if weekNumber == 2 {
+            weekNum = "2nd"
+        } else if weekNumber == 3 {
+            weekNum = "3rd"
+        } else if weekNumber == 4 {
+            weekNum = "4th"
+        } else {
+            weekNum = "5th"
+        }
+        
+        return weekNum + " Week of "
     }
 
     func plusWeek(_ date: Date) -> Date {
