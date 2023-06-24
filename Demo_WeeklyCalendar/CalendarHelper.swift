@@ -34,7 +34,6 @@ class CalendarHelper {
         } else {
             weekNum = "5th"
         }
-        
         return weekNum + " Week of "
     }
 
@@ -69,5 +68,31 @@ class CalendarHelper {
     func dayOfTheWeek(_ date: Date) -> Int {
         let asd = calendar.dateComponents([.weekday], from: date)
         return asd.weekday!
+    }
+    
+    
+    let getArrayOfHours : [Date] = {
+        var arrDayHours = [Date]()
+        
+        let dateFormat1 = DateFormatter()
+        dateFormat1.dateFormat = "H:mm"
+        
+//        let dateFormat2 = DateFormatter()
+//        dateFormat2.dateFormat = "h:mm a"
+        
+        for hour in 0...23 {
+            let str = "\(hour):00"
+            let calDate = dateFormat1.date(from: str)!
+            arrDayHours.append(calDate)
+        }
+        return arrDayHours
+    }()
+}
+
+extension Date {
+    func getHourStr() -> String {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "h:mm a"
+        return dateFormat.string(from: self)
     }
 }

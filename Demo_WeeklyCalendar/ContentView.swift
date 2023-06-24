@@ -9,13 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dateHolder: DateHolder
-    
+    @State var isPopover = false
     var body: some View {
+        VStack {
+            Button(action: { self.isPopover.toggle() }) {
+                Image(nsImage: NSImage(named: NSImage.infoName) ?? NSImage())
+            }.popover(isPresented: self.$isPopover, arrowEdge: .bottom) {
+                     PopoverView()
+            }.buttonStyle(PlainButtonStyle())
+        }.frame(height: 60)
+            .frame(maxWidth: .infinity)
         VStack(spacing: 10) {
             DateScrollerView().environmentObject(dateHolder)
                 .padding()
             dayOfWeekStack
             calendarGrid
+            CalendarComponent(calendarHeight: 24 * 40)
         }
         .padding(10)
     }
@@ -37,7 +46,6 @@ struct ContentView: View {
         .padding(10)
         .frame(minWidth: 125)
     }
-    
     
     
     var dayOfWeekStack: some View {
@@ -74,5 +82,25 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
         return dateFormatter.string(from: self).capitalized
+    }
+}
+struct PopoverView: View {
+    @State private var eventTitle: String = ""
+    
+    var body: some View {
+        Text("Add Event Details")
+            .font(Font.title.weight(.semibold))
+            .animation(.none)
+            .frame(maxWidth: .infinity)
+            .padding()
+        Divider()
+        VStack(spacing: 10) {
+            TextField("Event Name", text: $eventTitle)
+            Button("Resume") {
+                debugPrint("Button Click..")
+            }
+        }
+        .padding()
+        .frame(width: screenWidth*0.3)
     }
 }
