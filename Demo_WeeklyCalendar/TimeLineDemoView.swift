@@ -32,15 +32,16 @@ extension Date {
 struct CalendarComponent: View {
 
     let arrayHours = CalendarHelper.shared.getArrayOfHours
+    
+    let allEvents: [Event]      // Fetchd Events From API
 
-    //  let events: [Event]
-    let events: [Event] = [
-        Event(startTime: .dateFrom(9, 5, 2023,  9, 15), endTime: .dateFrom(9, 5, 2023, 10, 15), title: "Event 1"),
-        Event(startTime: .dateFrom(9, 5, 2023,  9,  0), endTime: .dateFrom(9, 5, 2023, 10,  0), title: "Event 2"),
-        Event(startTime: .dateFrom(9, 5, 2023, 11,  0), endTime: .dateFrom(9, 5, 2023, 12, 00), title: "Event 3"),
-        Event(startTime: .dateFrom(9, 5, 2023, 13,  0), endTime: .dateFrom(9, 5, 2023, 14, 45), title: "Event 4"),
-        Event(startTime: .dateFrom(9, 5, 2023, 15,  0), endTime: .dateFrom(9, 5, 2023, 15, 45), title: "Event 5")
-    ]
+//    let events: [Event] = [
+//        Event(startTime: .dateFrom(9, 5, 2023,  9, 15), endTime: .dateFrom(9, 5, 2023, 10, 15), title: "Event 1"),
+//        Event(startTime: .dateFrom(9, 5, 2023,  9,  0), endTime: .dateFrom(9, 5, 2023, 10,  0), title: "Event 2"),
+//        Event(startTime: .dateFrom(9, 5, 2023, 11,  0), endTime: .dateFrom(9, 5, 2023, 12, 00), title: "Event 3"),
+//        Event(startTime: .dateFrom(9, 5, 2023, 13,  0), endTime: .dateFrom(9, 5, 2023, 14, 45), title: "Event 4"),
+//        Event(startTime: .dateFrom(9, 5, 2023, 15,  0), endTime: .dateFrom(9, 5, 2023, 15, 45), title: "Event 5")
+//    ]
 
     let calendarHeight: CGFloat // total height of calendar
 
@@ -66,7 +67,7 @@ struct CalendarComponent: View {
                     }
                 }
                 
-                ForEach(events) { event in
+                ForEach(allEvents) { event in
                     eventCell(event, hourHeight: hourHeight)
                         .onTapGesture {
                             debugPrint("Event Name - \(event.id)")
@@ -77,7 +78,10 @@ struct CalendarComponent: View {
                 .offset(x: 60, y: 0)
             }
         }
-        .frame(maxWidth: NSScreen.main?.visibleFrame.size.height, alignment: .bottom)
+        .frame(maxWidth: screenHeight, alignment: .bottom)
+        .cornerRadius(8)
+        .shadow(radius: 8)
+        .background(Color.clear)
     }
 
     private func eventCell(_ event: Event, hourHeight: CGFloat) -> some View {
@@ -91,13 +95,14 @@ struct CalendarComponent: View {
 
         // hour + minute + padding offset from top
         var offset: Double {
-            ((CGFloat(hour) * hourHeight) + (CGFloat(minute / 60) * hourHeight) + 10)
+            ((CGFloat(hour) * hourHeight) + (CGFloat(minute / 60) * hourHeight) + 15)
         }
 
-        return Text(event.title).bold()
+        return Text(event.title)
+            .bold()
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(height: height)
+            .frame(height: height-10)
             .contentShape(Rectangle())
             .onTapGesture {
                 debugPrint("Event Name = \(event.title) and ID = \(event.id)")
@@ -106,7 +111,9 @@ struct CalendarComponent: View {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(.red.opacity(0.2))
                     .padding(.trailing, 60)
+                    .shadow(radius: 10)
             )
+            .shadow(radius: .zero)
             .offset(y: offset)
     }
 }
