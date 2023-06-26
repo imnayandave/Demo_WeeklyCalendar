@@ -11,3 +11,6 @@ class DateHolder: ObservableObject {
     @Published var date = Date()    // Today's Date
 }
 
+class SelectedDate: ObservableObject {
+    @Published var date = Date()    // Selected Date
+}

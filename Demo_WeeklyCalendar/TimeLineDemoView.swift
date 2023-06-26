@@ -11,14 +11,19 @@ import SwiftUI
 struct Event: Identifiable, Decodable {
     var id: String {
         let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "ddMMMYY_hmm"
-        let startStr = dateFormat.string(from: startTime)
-        let endStr = dateFormat.string(from: endTime)
-        return startStr+endStr
+        dateFormat.dateFormat = "ddMMMYY"
+        let eventStr = dateFormat.string(from: eventDay)
+        
+        dateFormat.dateFormat = "hmm"
+        let startHour = dateFormat.string(from: startTime)
+        let endHour = dateFormat.string(from: endTime)
+        
+        return eventStr+startHour+endHour
     }
     var startTime: Date
     var endTime: Date
     var title: String
+    var eventDay: Date
 }
 
 extension Date {
@@ -29,11 +34,28 @@ extension Date {
     }
 }
 
-struct CalendarComponent: View {
+extension Int {
+    func getEventTime() -> Date {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "H:mm"
+        
+        let strTime = "\(self):00"
+        let calDate = dateFormat.date(from: strTime)!
+        
+        return calDate
+    }
+}
 
+struct CalendarComponent: View {
+    @EnvironmentObject var selectedDate: SelectedDate
     let arrayHours = CalendarHelper.shared.getArrayOfHours
     
     let allEvents: [Event]      // Fetchd Events From API
+    
+    let events: [Event] = [
+        .init(startTime: arrayHours[0], endTime: arrayHours[1], title: "Demo Event", eventDay: selectedDate.date),
+        .init(startTime: arrayHours[3], endTime: arrayHours[4], title: "Second Demo Event", eventDay: selectedDate.date)
+    ]
 
 //    let events: [Event] = [
 //        Event(startTime: .dateFrom(9, 5, 2023,  9, 15), endTime: .dateFrom(9, 5, 2023, 10, 15), title: "Event 1"),
@@ -85,6 +107,10 @@ struct CalendarComponent: View {
     }
 
     private func eventCell(_ event: Event, hourHeight: CGFloat) -> some View {
+        // When StartTime and EndTime is Int
+//        var duration: Int { event.endTime - event.startTime }
+//        var height: Double { CGFloat(duration) * hourHeight }
+        
         var duration: Double { event.endTime.timeIntervalSince(event.startTime) }
         var height: Double { (duration / 60 / 60) * hourHeight }
 
@@ -97,6 +123,11 @@ struct CalendarComponent: View {
         var offset: Double {
             ((CGFloat(hour) * hourHeight) + (CGFloat(minute / 60) * hourHeight) + 15)
         }
+        
+        // When Int
+//        var offset: Double {
+//            (CGFloat(event.startTime) + 10)
+//        }
 
         return Text(event.title)
             .bold()

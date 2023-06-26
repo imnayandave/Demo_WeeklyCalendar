@@ -13,8 +13,10 @@ struct Demo_WeeklyCalendarApp: App {
     var body: some Scene {
         WindowGroup {
             let dateHolder = DateHolder()
+            let selectedDate = SelectedDate()
             ContentView()
                 .environmentObject(dateHolder)
+                .environmentObject(selectedDate)
         }
     }
 }
