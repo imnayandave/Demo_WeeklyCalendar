@@ -17,6 +17,9 @@
 		5207D68C2A4499C5000D1949 /* TimeLineDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207D68B2A4499C5000D1949 /* TimeLineDemoView.swift */; };
 		5207D68E2A472E2D000D1949 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207D68D2A472E2D000D1949 /* EventDetailView.swift */; };
 		5207D6902A4760F2000D1949 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207D68F2A4760F2000D1949 /* Helper.swift */; };
+		5270ADC82A4C9D540034DE6F /* API_ResponseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270ADC72A4C9D540034DE6F /* API_ResponseModal.swift */; };
+		5270ADCA2A4C9F130034DE6F /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270ADC92A4C9F130034DE6F /* NetworkClient.swift */; };
+		5270ADCC2A4CA5150034DE6F /* Day_Dates_Week.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270ADCB2A4CA5150034DE6F /* Day_Dates_Week.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,10 @@
 		5207D68B2A4499C5000D1949 /* TimeLineDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineDemoView.swift; sourceTree = "<group>"; };
 		5207D68D2A472E2D000D1949 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		5207D68F2A4760F2000D1949 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		5270ADC72A4C9D540034DE6F /* API_ResponseModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ResponseModal.swift; sourceTree = "<group>"; };
+		5270ADC92A4C9F130034DE6F /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		5270ADCB2A4CA5150034DE6F /* Day_Dates_Week.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day_Dates_Week.swift; sourceTree = "<group>"; };
+		5270ADCD2A4CB2A60034DE6F /* Demo-WeeklyCalendar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Demo-WeeklyCalendar-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +71,14 @@
 		5207D6752A435BBC000D1949 /* Demo_WeeklyCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				5270ADCD2A4CB2A60034DE6F /* Demo-WeeklyCalendar-Info.plist */,
 				5207D6762A435BBC000D1949 /* Demo_WeeklyCalendarApp.swift */,
 				5207D6782A435BBC000D1949 /* ContentView.swift */,
+				5270ADC72A4C9D540034DE6F /* API_ResponseModal.swift */,
+				5270ADC92A4C9F130034DE6F /* NetworkClient.swift */,
 				5207D6872A435E6D000D1949 /* DateScrollerView.swift */,
 				5207D6852A435DAE000D1949 /* DateHolder.swift */,
+				5270ADCB2A4CA5150034DE6F /* Day_Dates_Week.swift */,
 				5207D68D2A472E2D000D1949 /* EventDetailView.swift */,
 				5207D6892A435E8A000D1949 /* CalendarHelper.swift */,
 				5207D68F2A4760F2000D1949 /* Helper.swift */,
@@ -157,7 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5270ADCC2A4CA5150034DE6F /* Day_Dates_Week.swift in Sources */,
 				5207D68A2A435E8A000D1949 /* CalendarHelper.swift in Sources */,
+				5270ADCA2A4C9F130034DE6F /* NetworkClient.swift in Sources */,
+				5270ADC82A4C9D540034DE6F /* API_ResponseModal.swift in Sources */,
 				5207D6882A435E6D000D1949 /* DateScrollerView.swift in Sources */,
 				5207D68C2A4499C5000D1949 /* TimeLineDemoView.swift in Sources */,
 				5207D6792A435BBC000D1949 /* ContentView.swift in Sources */,
@@ -298,6 +312,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Demo_WeeklyCalendar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Demo-WeeklyCalendar-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -324,6 +339,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Demo_WeeklyCalendar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Demo-WeeklyCalendar-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -47,15 +47,16 @@ extension Int {
 }
 
 struct CalendarComponent: View {
-    @EnvironmentObject var selectedDate: SelectedDate
+
     let arrayHours = CalendarHelper.shared.getArrayOfHours
+    @EnvironmentObject var selectedDate: SelectedDate
     
     let allEvents: [Event]      // Fetchd Events From API
     
-    let events: [Event] = [
-        .init(startTime: arrayHours[0], endTime: arrayHours[1], title: "Demo Event", eventDay: selectedDate.date),
-        .init(startTime: arrayHours[3], endTime: arrayHours[4], title: "Second Demo Event", eventDay: selectedDate.date)
-    ]
+//    let events: [Event] = [
+//        .init(startTime: arrayHours[0], endTime: arrayHours[1], title: "Demo Event", eventDay: selectedDate.date),
+//        .init(startTime: arrayHours[3], endTime: arrayHours[4], title: "Second Demo Event", eventDay: selectedDate.date)
+//    ]
 
 //    let events: [Event] = [
 //        Event(startTime: .dateFrom(9, 5, 2023,  9, 15), endTime: .dateFrom(9, 5, 2023, 10, 15), title: "Event 1"),
@@ -100,7 +101,9 @@ struct CalendarComponent: View {
                 .offset(x: 60, y: 0)
             }
         }
-        .frame(maxWidth: screenHeight, alignment: .bottom)
+//        .frame(maxWidth: screenHeight, alignment: .bottom)
+        .frame(minWidth: screenWidth*0.5, alignment: .bottom)
+        .padding()
         .cornerRadius(8)
         .shadow(radius: 8)
         .background(Color.clear)
