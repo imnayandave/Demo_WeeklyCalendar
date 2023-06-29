@@ -27,10 +27,14 @@ struct NetworkClient {
         
         var request = URLRequest(url: mainUrl.url!)
         request.addValue("Basic 486:m0iZ/RxG20h32QJxByUnSqjB9AaTXq4T", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let data = data {
                 if let data = try? JSONDecoder().decode(T.self, from: data) {
+                    dump(data)
+                    	
+                    
                     completionHandler(true, data, nil)
                 } else {
                     show_API_Error_Alert()

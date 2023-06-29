@@ -91,10 +91,12 @@ struct CalendarComponent: View {
                 }
                 
                 ForEach(allEvents) { event in
-                    eventCell(event, hourHeight: hourHeight)
-                        .onTapGesture {
-                            debugPrint("Event Name - \(event.id)")
-                        }
+                    if event.eventDay.isSameDayAs(selectedDate.date) {
+                        eventCell(event, hourHeight: hourHeight)
+                            .onTapGesture {
+                                debugPrint("Event Name - \(event.id)")
+                            }
+                    }
                 }
                 .disabled(false)
                 .frame(alignment: .top)
@@ -114,17 +116,27 @@ struct CalendarComponent: View {
 //        var duration: Int { event.endTime - event.startTime }
 //        var height: Double { CGFloat(duration) * hourHeight }
         
-        var duration: Double { event.endTime.timeIntervalSince(event.startTime) }
+        var duration: Double {
+            debugPrint("DUration = \(event.endTime.timeIntervalSince(event.startTime))")
+            return event.endTime.timeIntervalSince(event.startTime) }
         var height: Double { (duration / 60 / 60) * hourHeight }
 
         let calendar = Calendar.current
 
-        var hour: Int { calendar.component(.hour, from: event.startTime) }
-        var minute: Int { calendar.component(.minute, from: event.startTime) }
+        var hour: Int {
+            debugPrint("Starting Date === \(event.startTime)")
+            debugPrint("Starting Hour = \(calendar.component(.hour, from: event.startTime))")
+            return calendar.component(.hour, from: event.startTime)
+        }
+        var minute: Int {
+            debugPrint("Starting Minute = \(calendar.component(.minute, from: event.startTime))")
+            return calendar.component(.minute, from: event.startTime)
+        }
 
         // hour + minute + padding offset from top
         var offset: Double {
-            ((CGFloat(hour) * hourHeight) + (CGFloat(minute / 60) * hourHeight) + 15)
+            debugPrint("OffSet = \(((CGFloat(hour) * hourHeight) + (CGFloat(minute / 60) * hourHeight) + 15))")
+            return ((CGFloat(hour) * hourHeight) + (CGFloat(minute / 60) * hourHeight) + 15)
         }
         
         // When Int

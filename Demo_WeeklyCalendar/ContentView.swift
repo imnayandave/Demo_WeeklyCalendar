@@ -13,6 +13,8 @@ struct ContentView: View {
     @EnvironmentObject var selectedDate: SelectedDate
     
     @State var allEventData = [Event_Data]()
+    @State var showableEvent = [Event]()
+    
     
     @State var isPopover = false
     
@@ -31,10 +33,7 @@ struct ContentView: View {
             DateScrollerView().environmentObject(dateHolder)
             dayOfWeekStack
             DatesOfWeek()
-            CalendarComponent(allEvents: [
-                .init(startTime: demoHours[0], endTime: demoHours[1], title: "Demo Event", eventDay: selectedDate.date),
-                .init(startTime: demoHours[3], endTime: demoHours[4], title: "Second Demo Event", eventDay: selectedDate.date)
-            ], calendarHeight: 24 * 40)
+            CalendarComponent(allEvents: showableEvent, calendarHeight: 24 * 40)
 //                .padding(.top, 10)
         }.onAppear(perform: {
             self.call_GetEvent_API()
@@ -50,12 +49,32 @@ struct ContentView: View {
             if isSuccess, let response = response {
                 allEventData = response.data.list
                 debugPrint("DATA FETCHED...")
+                get_All_Event_Dates()
             } else if let errorMessage = errorMessage {
                 show_Error_Alert(errorMessage)
             } else {
                 show_Error_Alert("Unknown Error Occured!")
             }
         }
+    }
+    
+    private func get_All_Event_Dates() {
+        var arrEvent = [Event]()
+        self.allEventData.forEach { event in
+            let fromDate = CalendarHelper.shared.convert_EventStr_Date(event.eventFromDate)
+            let toDate = CalendarHelper.shared.convert_EventStr_Date(event.eventToDate)
+            
+            debugPrint("From Date = \(fromDate)\n To Date = \(toDate)")
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "hh:mm a" // "a" prints "pm" or "am"
+            
+            
+            debugPrint("Hourr1 = \(formatter.string(from: fromDate)), Hour2 == \(formatter.string(from: toDate))")
+            
+            arrEvent.append(Event(startTime: fromDate, endTime: toDate, title: event.eventSubject, eventDay: fromDate))
+        }
+        showableEvent = arrEvent
     }
     
     private func show_Error_Alert(_ error: String) {
