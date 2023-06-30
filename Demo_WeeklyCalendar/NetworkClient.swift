@@ -46,8 +46,9 @@ struct NetworkClient {
     }
     
     
-    static private func show_API_Error_Alert() {
+    static func show_API_Error_Alert() {
         let alert = NSAlert()
+        alert.icon = nil
         alert.messageText = "Oops!"
         alert.informativeText = "Something Went Wrong.\nPlease Try Again Later!"
         alert.alertStyle = NSAlert.Style.warning

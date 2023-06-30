@@ -69,10 +69,9 @@ struct ContentView: View {
             let formatter = DateFormatter()
             formatter.dateFormat = "hh:mm a" // "a" prints "pm" or "am"
             
-            
             debugPrint("Hourr1 = \(formatter.string(from: fromDate)), Hour2 == \(formatter.string(from: toDate))")
             
-            arrEvent.append(Event(startTime: fromDate, endTime: toDate, title: event.eventSubject, eventDay: fromDate))
+            arrEvent.append(Event(startTime: fromDate, endTime: toDate, title: event.eventSubject, eventDay: fromDate, metaData: event))
         }
         showableEvent = arrEvent
     }

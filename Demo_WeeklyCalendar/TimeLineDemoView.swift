@@ -24,6 +24,7 @@ struct Event: Identifiable, Decodable {
     var endTime: Date
     var title: String
     var eventDay: Date
+    var metaData: Event_Data
 }
 
 extension Date {
@@ -50,6 +51,8 @@ struct CalendarComponent: View {
 
     let arrayHours = CalendarHelper.shared.getArrayOfHours
     @EnvironmentObject var selectedDate: SelectedDate
+    
+    @State var isPopOver = false
     
     let allEvents: [Event]      // Fetchd Events From API
     
@@ -94,6 +97,7 @@ struct CalendarComponent: View {
                     if event.eventDay.isSameDayAs(selectedDate.date) {
                         eventCell(event, hourHeight: hourHeight)
                             .onTapGesture {
+                                isPopOver.toggle()
                                 debugPrint("Event Name - \(event.id)")
                             }
                     }
@@ -151,13 +155,17 @@ struct CalendarComponent: View {
             .frame(height: height-10)
             .contentShape(Rectangle())
             .onTapGesture {
+                self.isPopOver.toggle()
                 debugPrint("Event Name = \(event.title) and ID = \(event.id)")
             }
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.red.opacity(0.2))
+                    .foregroundColor(.blue.opacity(0.2))
                     .padding(.trailing, 60)
                     .shadow(radius: 10)
+                    .popover(isPresented: self.$isPopOver) {
+                        EventDetailView(eventData: event.metaData)
+                    }
             )
             .shadow(radius: .zero)
             .offset(y: offset)

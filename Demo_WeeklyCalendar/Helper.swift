@@ -20,6 +20,14 @@ extension Text {
             .padding(.top, 1)
             .lineLimit(1)
     }
+    
+    func default_BackView() -> some View  {
+        self.padding(10)
+            .foregroundColor(Color.black)
+            .background(Color(NSColor.white))
+            .cornerRadius(10)
+            .shadow(radius: 10)
+    }
 }
 
 extension Date {
@@ -34,8 +42,6 @@ extension Date {
         dateFormat.dateFormat = "dd-MM-yyyy"
         return dateFormat.string(from: self) == dateFormat.string(from: anotherDate)
     }
-    
-    
 }
 
 extension TextField {
