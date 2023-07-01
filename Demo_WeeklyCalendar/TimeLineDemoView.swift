@@ -93,13 +93,11 @@ struct CalendarComponent: View {
                     }
                 }
                 
-                ForEach(allEvents) { event in
-                    if event.eventDay.isSameDayAs(selectedDate.date) {
-                        eventCell(event, hourHeight: hourHeight)
-                            .onTapGesture {
-                                isPopOver.toggle()
-                                debugPrint("Event Name - \(event.id)")
-                            }
+                HStack {
+                    ForEach(allEvents) { event in
+                        if event.eventDay.isSameDayAs(selectedDate.date) {
+                            eventCell(event, hourHeight: hourHeight)
+                        }
                     }
                 }
                 .disabled(false)
@@ -160,7 +158,7 @@ struct CalendarComponent: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.blue.opacity(0.2))
+                    .foregroundColor(.blue.opacity(0.5))
                     .padding(.trailing, 60)
                     .shadow(radius: 10)
                     .popover(isPresented: self.$isPopOver) {

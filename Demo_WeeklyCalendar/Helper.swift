@@ -56,3 +56,12 @@ extension TextField {
             .animation(.none)
     }
 }
+
+extension Optional where Wrapped == String {
+    func non_Nil_String(_ showNA: Bool = false) -> String {
+        guard let nonEmpty = self else {
+            return showNA ? "N/A" : ""
+        }
+        return nonEmpty
+    }
+}

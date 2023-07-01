@@ -33,33 +33,33 @@ struct EventDetailView: View {
         VStack(alignment: .center, spacing: 20) {
             HStack(spacing: 5) {
                 Text("Meeting Type : ")
-                Text(eventData.meetingTypeName).default_BackView()
+                Text(eventData.meetingTypeName.non_Nil_String()).default_BackView()
                 Spacer()
                 Text("Created By : ")
-                Text(eventData.createdForUserName).default_BackView()
+                Text(eventData.createdForUserName.non_Nil_String()).default_BackView()
             }
             
             HStack(spacing: 5) {
                 Text("Subject : ")
-                Text(eventData.eventSubject).default_BackView()
+                Text(eventData.eventSubject.non_Nil_String()).default_BackView()
                 Spacer()
                 Text("Duration : ")
-                Text(eventData.duration).default_BackView()
+                Text(eventData.duration.non_Nil_String()).default_BackView()
             }
             
             HStack(spacing: 5) {
                 Text("From Time : ")
-                Text(CalendarHelper.shared.convert_EventStr_Date(eventData.eventFromDate).getHourStr())
+                Text(CalendarHelper.shared.convert_EventStr_Date(eventData.eventFromDate.non_Nil_String()).getHourStr())
                     .default_BackView()
                 Spacer()
                 Text("To Time : ")
-                Text(CalendarHelper.shared.convert_EventStr_Date(eventData.eventToDate).getHourStr())
+                Text(CalendarHelper.shared.convert_EventStr_Date(eventData.eventToDate.non_Nil_String()).getHourStr())
                     .default_BackView()
             }
             
             HStack(spacing: 10) {
                 Text("Location : ")
-                Text(eventData.locationName + " , " + eventData.eventLocation)
+                Text(eventData.locationName.non_Nil_String() + " , " + eventData.eventLocation.non_Nil_String())
             }
             
             

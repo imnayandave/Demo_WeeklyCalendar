@@ -47,7 +47,11 @@ struct ContentView: View {
     private func call_GetEvent_API() {
         NetworkClient.networkRequest { (isSuccess, response: All_Event_Response_Modal?, errorMessage) in
             if isSuccess, let response = response {
-                allEventData = response.data.list
+                guard let mainData = response.data else {
+                    show_Error_Alert(response.message ?? "No Data From API")
+                    return
+                }
+                allEventData = mainData.list ?? []
                 debugPrint("DATA FETCHED...")
                 get_All_Event_Dates()
             } else if let errorMessage = errorMessage {
@@ -61,8 +65,8 @@ struct ContentView: View {
     private func get_All_Event_Dates() {
         var arrEvent = [Event]()
         self.allEventData.forEach { event in
-            let fromDate = CalendarHelper.shared.convert_EventStr_Date(event.eventFromDate)
-            let toDate = CalendarHelper.shared.convert_EventStr_Date(event.eventToDate)
+            let fromDate = CalendarHelper.shared.convert_EventStr_Date(event.eventFromDate.non_Nil_String())
+            let toDate = CalendarHelper.shared.convert_EventStr_Date(event.eventToDate.non_Nil_String())
             
             debugPrint("From Date = \(fromDate)\n To Date = \(toDate)")
             
@@ -71,7 +75,7 @@ struct ContentView: View {
             
             debugPrint("Hourr1 = \(formatter.string(from: fromDate)), Hour2 == \(formatter.string(from: toDate))")
             
-            arrEvent.append(Event(startTime: fromDate, endTime: toDate, title: event.eventSubject, eventDay: fromDate, metaData: event))
+            arrEvent.append(Event(startTime: fromDate, endTime: toDate, title: event.eventSubject.non_Nil_String(), eventDay: fromDate, metaData: event))
         }
         showableEvent = arrEvent
     }

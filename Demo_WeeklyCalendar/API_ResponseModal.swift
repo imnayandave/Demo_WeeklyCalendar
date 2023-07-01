@@ -7,10 +7,11 @@
 
 import Foundation
 
+// MARK: - All_Event_Response_Modal
 struct All_Event_Response_Modal: Codable {
-    var statusCode: Int
-    var status, message: String
-    var data: All_Event_List_Container
+    var statusCode: Int?
+    var status, message: String?
+    var data: All_Event_List_Container?
 
     enum CodingKeys: String, CodingKey {
         case statusCode = "StatusCode"
@@ -20,66 +21,66 @@ struct All_Event_Response_Modal: Codable {
     }
 }
 
-// MARK: - DataClass
+// MARK: - All_Event_List_Container
 struct All_Event_List_Container: Codable {
-    var list: [Event_Data]
+    var list: [Event_Data]?
 }
 
-// MARK: - List
+// MARK: - Event_Data
 struct Event_Data: Codable {
-    var dlEventID: Int
-    var eventSubject: String
+    var dlEventID: Int?
+    var eventSubject: String?
     var eventDesc: String?
     var enentNote: String?
-    var meetingType: String
-    var eventType: Int
-    var eventFromDate, eventToDate: String
+    var meetingType: String?
+    var eventType: Int?
+    var eventFromDate, eventToDate: String?
     var eventFromTime, eventToTime, keyword, eventReminderInfo: String?
     var eventLabel: String?
-    var eventAllDays: Bool
-    var eventStatusID: Int
+    var eventAllDays: Bool?
+    var eventStatusID: Int?
     var googleMapLink, recurrence, email: String?
-    var isMeetingExpNoti: Bool
+    var isMeetingExpNoti: Bool?
     var postEventCreationMinutes, personList, assetsList, documentList: String?
-    var eventIsActive, eventIsDeleted: Bool
+    var eventIsActive, eventIsDeleted: Bool?
     var internalPersonID, internalPersonName: String?
-    var eventEntDt: String
+    var eventEntDt: String?
     var eventEntTerm: String?
-    var eventUpdTerm, eventUpdDt: String
+    var eventUpdTerm, eventUpdDt: String?
     var freqInterval, refDLEvent, personID, rfidCardNumber: String?
     var ssid, ssidName: String?
-    var meetingTypeID: Int
-    var meetingTypeName: String
-    var isMomRequired: Bool
+    var meetingTypeID: Int?
+    var meetingTypeName: String?
+    var isMomRequired: Bool?
     var dlEventRecurrenceID, eventIsRecurrence: String?
     var eventIsBroadcast: Bool?
-    var onResourceBeforeMinutes, locationID, eventLocationID: Int
-    var eventLocation: String
-    var eventMainStatusID: Int
-    var duration: String
-    var createdByUserID: Int
-    var createdByUserName: String?
-    var createdForUserID: Int
-    var createdForUserName: String
+    var onResourceBeforeMinutes, locationID, eventLocationID: Int?
+    var eventLocation: String?
+    var eventMainStatusID: Int?
+    var duration: String?
+    var createdByUserID: Int?
+    var createdByUserName: CreatedForUserName?
+    var createdForUserID: Int?
+    var createdForUserName: String?
     var doorSourceID: String?
-    var statusDesc: String
+    var statusDesc: String?
     var evtdirectDID, doorName, doorDestinationID: String?
-    var dlCategoryID: Int
-    var locationName: String
+    var dlCategoryID: Int?
+    var locationName: String?
     var timeZone: String?
-    var createdforEmpid: Int
+    var createdforEmpid: Int?
     var secondsFromGMT: String?
-    var isExternalInvitee: Bool
-    var localSyncEventID: Int
+    var isExternalInvitee: Bool?
+    var localSyncEventID: Int?
     var eventOwnerInTime, recurrenceTypeID, recurrenceWeekDay: String?
     var deviceDetail: String?
-    var dlEventTaskLink: [String?]
-    var dlEventParticipents: [DLEventParticipent]
+    var dlEventTaskLink: [String]?
+    var dlEventParticipents: [DLEventParticipent]?
     var vmsNewVisitorList: String?
-    var dlEventResources, dlEventDocumentDets: [String?]
-    var dlEventMatrixDoorDet: [DLEventMatrixDoorDet]
-    var airisReminderDet: [AirisReminderDet]
-    var dlEventFollowersDet, tagRelationMst: [String?]
+    var dlEventResources, dlEventDocumentDets: [String]?
+    var dlEventMatrixDoorDet: [DLEventMatrixDoorDet]?
+    var airisReminderDet: [AirisReminderDet]?
+    var dlEventFollowersDet, tagRelationMst: [String]?
 
     enum CodingKeys: String, CodingKey {
         case dlEventID = "DLEventID"
@@ -165,14 +166,18 @@ struct Event_Data: Codable {
 
 // MARK: - AirisReminderDet
 struct AirisReminderDet: Codable {
-    var reminderID: Int
-    var identifier: String
-    var dlEventID: Int
+    var reminderID: Int?
+    var identifier: String?
+    var dlEventID: Int?
     var dlTaskID: String?
-    var userID, typeRaw, typeValue: Int
-    var entDt, entUser, entTerm: String
-    var updDt, updUser, updTerm: String?
-    var isActive, isForStartDate: Bool
+    var userID, typeRaw, typeValue: Int?
+    var entDt: String?
+    var entUser: String?
+    var entTerm: String?
+    var updDt: String?
+    var updUser: String?
+    var updTerm: String?
+    var isActive, isForStartDate: Bool?
 
     enum CodingKeys: String, CodingKey {
         case reminderID = "ReminderID"
@@ -193,13 +198,27 @@ struct AirisReminderDet: Codable {
     }
 }
 
+enum Term: String, Codable {
+    case the172271230 = "172.27.1.230"
+}
+
+enum CreatedForUserName: String, Codable {
+    case dipakRathod = "Dipak Rathod"
+    case faizNagariya = "Faiz Nagariya"
+    case jitendraNikam = "Jitendra Nikam"
+    case nareshNagar = "Naresh Nagar"
+    case rohanDesai = "Rohan Desai"
+    case somprabhaDandpat = "Somprabha Dandpat"
+}
+
 // MARK: - DLEventMatrixDoorDet
 struct DLEventMatrixDoorDet: Codable {
-    var evtdirectDID, dlEventID: Int
-    var doorID, doorName, entdt: String
+    var evtdirectDID, dlEventID: Int?
+    var doorID, doorName, entdt: String?
     var doorGroupID, doorType: String?
-    var entUser, entTerm: String
-    var doorLink: Bool
+    var entUser: String?
+    var entTerm: String?
+    var doorLink: Bool?
 
     enum CodingKeys: String, CodingKey {
         case evtdirectDID = "EvtdirectDID"
@@ -217,21 +236,26 @@ struct DLEventMatrixDoorDet: Codable {
 
 // MARK: - DLEventParticipent
 struct DLEventParticipent: Codable {
-    var participentLogID: Int
-    var isAttending, confirmationString: String?
-    var visitorTrackID, actualCheckInTime, actualCheckOutTime, isBlockedInMatrix: String?
-    var isNotifiedForBlock, notesForParticipent: String?
-    var rfidCardNumber, tokenNumber: String?
-    var showAs: Int
+    var participentLogID: Int?
+    var isAttending: String?
+    var confirmationString: String?
+    var visitorTrackID: String?
+    var actualCheckInTime, actualCheckOutTime: String?
+    var isBlockedInMatrix, isNotifiedForBlock, notesForParticipent: String?
+    var rfidCardNumber: String?
+    var tokenNumber: String?
+    var showAs: Int?
     var participentAssets: String?
-    var isCoHost, sendEmail, isPersonActive: Bool
+    var isCoHost, sendEmail, isPersonActive: Bool?
     var notificationID: String?
     var isMeetingExpNoti: Bool?
-    var dlEventID, personID: Int
-    var personName, personDepartment: String
-    var personDesignation, personCompany, personPhotoName: String?
+    var dlEventID, personID: Int?
+    var personName, personDepartment: String?
+    var personDesignation: String?
+    var personCompany: String?
+    var personPhotoName: String?
     var meetingRoomAddMe: String?
-    var dlEventParticipentAsset: [String?]
+    var dlEventParticipentAsset: [DLEventParticipentAsset]?
     var participentPunchDetail: String?
 
     enum CodingKeys: String, CodingKey {
@@ -263,5 +287,23 @@ struct DLEventParticipent: Codable {
         case meetingRoomAddMe = "MeetingRoomAddMe"
         case dlEventParticipentAsset = "DLEventParticipentAsset"
         case participentPunchDetail = "ParticipentPunchDetail"
+    }
+}
+
+// MARK: - DLEventParticipentAsset
+struct DLEventParticipentAsset: Codable {
+    var dlEventParticipentAssetID: Int?
+    var remark: String?
+    var dlParticipentLogID, dlAssetsID: Int?
+    var assetsName, dlEventAssetEntDt, dlEventAssetUpdDt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case dlEventParticipentAssetID = "DLEventParticipentAssetID"
+        case remark = "Remark"
+        case dlParticipentLogID = "DLParticipentLogID"
+        case dlAssetsID = "DLAssetsID"
+        case assetsName = "AssetsName"
+        case dlEventAssetEntDt = "DLEventAssetEntDt"
+        case dlEventAssetUpdDt = "DLEventAssetUpdDt"
     }
 }
